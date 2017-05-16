@@ -20,12 +20,37 @@ from email_preprocess import preprocess
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
+outputFile = "output.txt"
+out = open(outputFile, "w")
+
+def logLine(line):
+    out.write(line)
+    out.write("\n")
+    print line
 
 
 #########################################################
 ### your code goes here ###
 
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+clf = DecisionTreeClassifier(min_samples_split=40)
+
+t0 = time()
+clf.fit(features_train, labels_train)
+t1 = time()
+labels_predict = clf.predict(features_test)
+t2 = time()
+accuracy = accuracy_score(labels_test, labels_predict)
+
+logLine("Training with decision tree default values, min_sample_split = 40")
+logLine("Accuracy : {}".format(accuracy))
+logLine("Training time : {}".format(t1-t0))
+logLine("Prediction time : {}".format(t2-t1))
+
 
 #########################################################
 
 
+out.close()

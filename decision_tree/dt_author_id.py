@@ -20,7 +20,7 @@ from email_preprocess import preprocess
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
-outputFile = "output.txt"
+outputFile = "output2.txt"
 out = open(outputFile, "w")
 
 def logLine(line):
@@ -31,6 +31,8 @@ def logLine(line):
 
 #########################################################
 ### your code goes here ###
+
+logLine("No of Features = {}".format(len(features_train[0])))
 
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
